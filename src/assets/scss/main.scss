@@ -4,6 +4,9 @@
 @import "utils/fonts";
 @import "utils/reset";
 
+@import "pages/index";
+@import "pages/inner_page";
+
 html {
   line-height: $mainLineHeight;
 	font-size: $mainFontSize;
@@ -56,35 +59,3 @@ section, .section {
   }
 }
 
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  margin: 0 auto;
-  min-height: 100vh;
-}
-
-.content-wrapper {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-.container {
-  width: 100%;
-  flex: 0 0 auto;
-  position: relative;
-  margin: 0 auto;
-  max-width: $desktopWidth;
-  @media screen and (max-width: $smDesktopWidth) {
-    max-width: tableWidth;
-  }
-  @media screen and (max-width: $tableWidth) {
-    max-width: phoneWidth;
-  }
-  @media screen and (max-width: $phoneWidth) {
-    max-width: smPhoneWidth;
-  }
-}
-
-// Modules
-// @import "modules/my-module.scss";

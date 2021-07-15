@@ -34,6 +34,7 @@ module.exports = {
     publicPath: '/'
   },
   optimization: {
+    minimize: false,
     splitChunks: {
       cacheGroups: {
         vendor: {
@@ -52,11 +53,11 @@ module.exports = {
         // this applies to <template lang="pug"> in Vue components
         {
           resourceQuery: /^\?vue/,
-          use: ['pug-plain-loader']
+          use: ['pug-plain-loader?pretty=true']
         },
         // this applies to pug imports inside JavaScript
         {
-          use: ['pug-loader']
+          use: ['pug-loader?pretty=true']
         }
       ]
     }, {
@@ -137,6 +138,11 @@ module.exports = {
     ...PAGES.map(page => new HtmlWebpackPlugin({
       template: `${PAGES_DIR}/${page}`,
       filename: `./${page.replace(/\.pug/,'.html')}`
-    }))
+    })),
+    new HtmlWebpackPlugin({
+      template: `${PAGES_DIR}/inner_page.pug`,
+      filename: './inner_page.html',
+      inject: true
+    }),
   ],
 }

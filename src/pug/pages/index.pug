@@ -1,23 +1,1411 @@
 extends ../layout/main
 
 block variables
-  - var title = 'Webpack + Pug';
-  - var description = 'Description for Webpack + Pug';
-  - var pageClass = 'index-page';
+  - var title = 'Авто объявления';
+  - var description = 'Автомобили объявления';
+  - var pageClass = 'auto-page';
 
 block content
-  section
+  .container
+    .column-content
+      .column-content-title
+        h1 Авто объявления
+        .column-content-slider__location 
+          .column-content-slider__city г. Оренбург
+          .column-content-slider__maplink Уточнить адрес
+      .column-content-filter
+        .column-content-filter__first-controls
+          .column-content-filter__tabs
+            label
+              input(type="radio" name="mileage" value="all" checked) 
+              span.checkmark
+              div.type Все
+            label
+              input(type="radio" name="mileage" value="mileage")  
+              span.checkmark
+              div.type С пробегом
+            label
+              input(type="radio" name="mileage" value="new") 
+              span.checkmark
+              div.type Новые
+          a.column-content-filter__save(href="#") Сохранить поиск
+        .column-content-filter__row 
+          .column-content-filter__cell
+            select#auto-brand.column-content-filter__select.column-content-filter__select--transparent(name="" data-selectmenu) 
+              option(value="") Марка
+              option(value="auto-brand-1") BMW
+              option(value="auto-brand-2") BMW
+              option(value="auto-brand-3") BMW
+          .column-content-filter__cell
+            select#auto-model.column-content-filter__select.column-content-filter__select--transparent(name="" data-selectmenu) 
+              option(value="") Модель
+              option(value="auto-model-1") BMW
+              option(value="auto-model-2") BMW
+              option(value="auto-model-3") BMW
+          .column-content-filter__cell
+            select#auto-tier.column-content-filter__select.column-content-filter__select--transparent(name="" data-selectmenu) 
+              option(value="") Поколение
+              option(value="auto-tier-1") BMW
+              option(value="auto-tier-2") BMW
+              option(value="auto-tier-3") BMW
+
+        .column-content-filter__row 
+          .column-content-filter__cell
+            .column-content-filter__range
+              .column-content-filter__range-start
+                label.column-content-filter__label(for="price-start") 
+                  input#price-start(type="text", name="", placeholder="")
+                  span Цена от
+              .column-content-filter__range-stop
+                label.column-content-filter__label.column-content-filter__label--price(for="price-stop") 
+                  input#price-stop(type="text", name="",)
+                  span До
+          .column-content-filter__cell
+            .column-content-filter__range
+              .column-content-filter__range-start
+                label.column-content-filter__label(for="year-start") 
+                  input#year-start(type="text", name="")
+                  span Год  от
+              .column-content-filter__range-stop
+                label.column-content-filter__label(for="year-stop") 
+                  input#year-stop(type="text", name="")
+                  span До
+          .column-content-filter__cell
+            select#auto-transmission.column-content-filter__select(name="" data-selectmenu) 
+              option(value="") Коробка передач
+              option(value="auto-transmission-1") BMW
+              option(value="auto-transmission-2") BMW
+              option(value="auto-transmission-3") BMW
+
+        .column-content-filter__row 
+          .column-content-filter__cell
+            select#auto-body.column-content-filter__select(name="" data-selectmenu) 
+              option(value="") Тип кузова
+              option(value="auto-body-1") Седан
+              option(value="auto-body-2") Хэтчбек  3 дв.
+              option(value="auto-body-3") Хэтчбек  5 дв.
+              option(value="auto-body-4") Лифтбек
+              option(value="auto-body-5") Внедорожник 3 дв.
+              option(value="auto-body-6") Внедорожник 5 дв.
+              option(value="auto-body-7") Универсал
+              option(value="auto-body-8") Пикап
+              option(value="auto-body-9") Минивэн
+              option(value="auto-body-10") Фургон
+              option(value="auto-body-11") Купе
+              option(value="auto-body-12") Кабриолет
+          .column-content-filter__cell
+            select#auto-fuel.column-content-filter__select(name="" data-selectmenu) 
+              option(value="") Топливо
+              option(value="auto-fuel-1") BMW
+              option(value="auto-fuel-2") BMW
+              option(value="auto-fuel-3") BMW
+          .column-content-filter__cell
+            .column-content-filter__range
+              .column-content-filter__range-start
+                label.column-content-filter__label(for="volume-start") 
+                  input#volume-start(type="text", name="",)
+                  span Объем, от
+              .column-content-filter__range-stop
+                label.column-content-filter__label.column-content-filter__label--volume(for="volume-stop") 
+                  input#volume-stop(type="text", name="")
+                  span До
+        
+        .column-content-filter__additional-options.show(href="#" content-filter-additional-options)
+          .column-content-filter__row 
+            .column-content-filter__cell
+              .column-content-filter__range
+                .column-content-filter__range-start
+                  label.column-content-filter__label(for="mileage-start") 
+                    input#mileage-start(type="text", name="")
+                    span Пробег от, км
+                .column-content-filter__range-stop
+                  label.column-content-filter__label(for="mileage-stop") 
+                    input#mileage-stop(type="text", name="")
+                    span До
+            .column-content-filter__cell
+              .column-content-filter__range
+                .column-content-filter__range-start
+                  label.column-content-filter__label(for="power-start") 
+                    input#power-start(type="text", name="")
+                    span Мощность от, л.с.
+                .column-content-filter__range-stop
+                  label.column-content-filter__label(for="power-stop") 
+                    input#power-stop(type="text", name="")
+                    span До
+            .column-content-filter__cell
+              select#auto-drive-unit.column-content-filter__select(name="")  
+                option(value="") Привод
+                option(value="auto-drive-unit-1") BMW
+                option(value="auto-drive-unit-2") BMW
+                option(value="auto-drive-unit-3") BMW
+          .column-content-filter__row 
+            .column-content-filter__cell
+              .column-content-filter__steering-wheel 
+                label
+                  input(type="radio" name="steering-wheel" value="left" checked) 
+                  span.checkmark
+                  div.type Левый руль
+                label
+                  input(type="radio" name="steering-wheel" value="right")  
+                  span.checkmark
+                  div.type Правый руль
+            .column-content-filter__cell--2-3
+              .column-content-filter__select-color
+                span Цвет:
+                .column-content-filter__colors 
+                  label(for="select-color-white") 
+                    input#select-color-white(type="radio" name="select-color" value="white" checked)  
+                    img(src="assets/img/colors/white.png", alt="auto")
+                  label(for="select-color-black") 
+                    input#select-color-black(type="radio" name="select-color" value="black")  
+                    img(src="assets/img/colors/black.png", alt="auto")
+                  label(for="select-color-grey") 
+                    input#select-color-grey(type="radio" name="select-color" value="grey")  
+                    img(src="assets/img/colors/grey.png", alt="auto")
+                  label(for="select-color-blue") 
+                    input#select-color-blue(type="radio" name="select-color" value="blue")  
+                    img(src="assets/img/colors/blue.png", alt="auto")
+                  label(for="select-color-yellow") 
+                    input#select-color-yellow(type="radio" name="select-color" value="yellow") 
+                    img(src="assets/img/colors/yellow.png", alt="auto")
+                  label(for="select-color-brown") 
+                    input#select-color-brown(type="radio" name="select-color" value="brown") 
+                    img(src="assets/img/colors/brown.png", alt="auto")
+                  label(for="select-color-green") 
+                    input#select-color-green(type="radio" name="select-color" value="green")  
+                    img(src="assets/img/colors/green.png", alt="auto")
+                  label(for="select-color-red") 
+                    input#select-color-red(type="radio" name="select-color" value="red") 
+                    img(src="assets/img/colors/red.png", alt="auto")
+                a.column-content-filter__colors-other(href="#") Другое
+          .column-content-filter__row 
+            .column-content-filter__cell
+              select#auto-passport.column-content-filter__select(name="") 
+                option(value="") Владельцев по ПТС
+                option(value="auto-drive-unit-1") BMW
+                option(value="auto-drive-unit-2") BMW
+                option(value="auto-drive-unit-3") BMW
+            .column-content-filter__cell--2-3
+              .column-content-filter__auto-states 
+                span Состояние авто:
+                .column-content-filter__auto-state
+                  label
+                    input(type="radio" name="auto-state" value="all" checked) 
+                    span.checkmark
+                    div.type Все
+                  label
+                    input(type="radio" name="auto-state" value="not-broken")  
+                    span.checkmark
+                    div.type Кроме битых
+                  label
+                    input(type="radio" name="auto-state" value="broken")  
+                    span.checkmark
+                    div.type Битые
+          .column-content-filter__row 
+            .column-content-filter__cell--2-3
+              .column-content-filter__auto-customers 
+                span Продавец:
+                .column-content-filter__auto-customer
+                  label
+                    input(type="radio" name="auto-customer" value="every" checked) 
+                    span.checkmark
+                    div.type Любой
+                  label
+                    input(type="radio" name="auto-customer" value="owner ")  
+                    span.checkmark
+                    div.type Собственник
+                  label
+                    input(type="radio" name="auto-customer" value="company")  
+                    span.checkmark
+                    div.type Компания
+            .column-content-filter__cell
+              .column-content-filter__checkboxes
+                label(for="checkboxes-photo") 
+                  input#checkboxes-photo(type="checkbox" name="photo" checked)
+                  .checkmark
+                  span С фото
+                label(for="checkboxes-exchange") 
+                  input#checkboxes-exchange(type="checkbox" name="exchange")
+                  .checkmark
+                  span Возможен<br />обмен
+
+        .column-content-filter__control 
+          a.column-content-filter__toggle.show(href="#" content-filter-toggle) Расширенный поиск
+          a.column-content-filter__toggle.column-content-filter__toggle--min(href="#" content-filter-toggle) Очистить поиск
+          a.column-content-filter__show-all(href="#")
+            img(src="assets/img/show-all-icon.png", alt="show-all-icon")
+            span Показать
+            span.column-content-filter__show-all--num 1 535
+            span предложений
+
+      .column-content-sort
+      .column-content-list
+        .column-content-list__list
+          li.column-content-list__block 
+            .column-content-list__imgwrap 
+              img(src="assets/img/autos/1.jpg", alt="auto")
+            .column-content-list__content 
+              .column-content-list__info
+                h3.star BMW 5 серии VII (G30/G31) 530i
+                .column-content-list__primary-stats
+                  .column-content-list__year 2019
+                  .column-content-list__mileage 16 500 км
+                .column-content-list__stats
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell 2.0 л / 249 л.с.
+                    .column-content-list__stats-cell Седан
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell Бензин
+                    .column-content-list__stats-cell Полный привод
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell Автомат
+                    .column-content-list__stats-cell 1 владелец               
+              .column-content-list__handling
+                .column-content-list__prices
+                  .column-content-list__price
+                    h3.good-price 3 399 000 ₽
+                    .column-content-list__credits
+                      .column-content-list__credit в кредит<br />от 52 000 ₽/мес
+                      .column-content-list__good-price Хорошая цена
+                      .column-content-list__owner Собственник
+                .column-content-list__operational
+                  a.column-content-list__save(data-content-list-save href="#")
+                  a.column-content-list__note(data-content-list-note href="#")
+                  a.column-content-list__reject(data-content-list-reject href="#")
+              .column-content-list__misc
+                .column-content-list__miscwrap
+                  .column-content-list__location г.Оренбург
+                  .column-content-list__misc-date 10 апреля
+                .column-content-list__misc-phone Телефон смотреть
+            .column-content-list__personal-note(personal-note)
+              input(placeholder="Заметку об этом автомобиле увидите только Вы")
+              a(href="#") 
+                img(src="assets/img/personal-note.png", alt="check")
+          li.column-content-list__block 
+            .column-content-list__imgwrap 
+              img(src="assets/img/autos/2.jpg", alt="auto")
+            .column-content-list__content 
+              .column-content-list__info
+                h3.star BMW X5 III (F15) 40d
+                .column-content-list__primary-stats
+                  .column-content-list__year 2016
+                  .column-content-list__mileage 71 000 км
+                .column-content-list__stats
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell 3.0 л / 313 л.с.
+                    .column-content-list__stats-cell Внедорожник 5 дв.
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell Дизель
+                    .column-content-list__stats-cell Полный привод
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell Автомат
+                    .column-content-list__stats-cell 2 владельца              
+              .column-content-list__handling
+                .column-content-list__prices
+                  .column-content-list__price
+                    h3 3 700 000 ₽
+                    .column-content-list__credits
+                      .column-content-list__credit в кредит<br />от 5 000 ₽/мес
+                      .column-content-list__owner Собственник
+                .column-content-list__operational
+                  a.column-content-list__save(data-content-list-save href="#")
+                  a.column-content-list__note(data-content-list-note href="#")
+                  a.column-content-list__reject(data-content-list-reject href="#")
+              .column-content-list__misc
+                .column-content-list__miscwrap
+                  .column-content-list__location г.Оренбург
+                  .column-content-list__misc-date 10 апреля
+                .column-content-list__misc-phone Телефон смотреть
+            .column-content-list__personal-note(personal-note)
+              input(placeholder="Заметку об этом автомобиле увидите только Вы")
+              a(href="#") 
+                img(src="assets/img/personal-note.png", alt="check")
+          li.column-content-list__block 
+            .column-content-list__imgwrap 
+              img(src="assets/img/autos/3.jpg", alt="auto")
+            .column-content-list__content 
+              .column-content-list__info
+                h3 Toyota Camry VIII (XV70)
+                .column-content-list__primary-stats
+                  .column-content-list__year 2019
+                  .column-content-list__mileage 29 596 км
+                .column-content-list__stats
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell 2.5 л / 181 л.с.
+                    .column-content-list__stats-cell Седан
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell Бензин
+                    .column-content-list__stats-cell Передний привод
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell Автомат
+                    .column-content-list__stats-cell 1 владелец               
+              .column-content-list__handling
+                .column-content-list__prices
+                  .column-content-list__price
+                    h3 1 990 000 ₽
+                    .column-content-list__credits
+                      .column-content-list__credit в кредит<br />от 25 000 ₽/мес
+                      .column-content-list__good-price Хорошая цена
+                .column-content-list__operational
+                  a.column-content-list__save(data-content-list-save href="#")
+                  a.column-content-list__note(data-content-list-note href="#")
+                  a.column-content-list__reject(data-content-list-reject href="#")
+              .column-content-list__misc
+                .column-content-list__miscwrap
+                  .column-content-list__location г.Оренбург
+                  .column-content-list__misc-date 10 апреля
+                .column-content-list__misc-phone Телефон смотреть
+            .column-content-list__personal-note(personal-note)
+              input(placeholder="Заметку об этом автомобиле увидите только Вы")
+              a(href="#") 
+                img(src="assets/img/personal-note.png", alt="check")
+          li.column-content-list__block 
+            .column-content-list__imgwrap 
+              img(src="assets/img/autos/4.jpg", alt="auto")
+            .column-content-list__content 
+              .column-content-list__info
+                h3 LADA (ВАЗ) Largus I
+                .column-content-list__primary-stats
+                  .column-content-list__year 2017
+                  .column-content-list__mileage 62 000 км
+                .column-content-list__stats
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell 1.6 л / 106 л.с.
+                    .column-content-list__stats-cell Универсал 5 дв.
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell Бензин, газ
+                    .column-content-list__stats-cell Передний привод
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell Механика
+                    .column-content-list__stats-cell 2 владельца             
+              .column-content-list__handling
+                .column-content-list__prices
+                  .column-content-list__price
+                    h3 3 399 000 ₽
+                    .column-content-list__credits
+                      .column-content-list__credit в кредит<br />от 5 000 ₽/мес
+                      .column-content-list__excellent-price Отличная цена
+                .column-content-list__operational
+                  a.column-content-list__save(data-content-list-save href="#")
+                  a.column-content-list__note(data-content-list-note href="#")
+                  a.column-content-list__reject(data-content-list-reject href="#")
+              .column-content-list__misc
+                .column-content-list__miscwrap
+                  .column-content-list__location г.Оренбург
+                  .column-content-list__misc-date 10 апреля
+                .column-content-list__misc-phone Телефон смотреть
+            .column-content-list__personal-note(personal-note)
+              input(placeholder="Заметку об этом автомобиле увидите только Вы")
+              a(href="#") 
+                img(src="assets/img/personal-note.png", alt="check")
+          li.column-content-list__block 
+            .column-content-list__imgwrap 
+              img(src="assets/img/autos/5.jpg", alt="auto")
+            .column-content-list__content 
+              .column-content-list__info
+                h3 Hyundai Creta I
+                .column-content-list__primary-stats
+                  .column-content-list__year 2016
+                  .column-content-list__mileage 80 000 км
+                .column-content-list__stats
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell 1.6 л / 123 л.с.
+                    .column-content-list__stats-cell Внедорожник 5 дв.
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell Бензин
+                    .column-content-list__stats-cell Передний привод
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell Механика
+                    .column-content-list__stats-cell 2 владельца             
+              .column-content-list__handling
+                .column-content-list__prices
+                  .column-content-list__price
+                    h3 от 899 000 ₽
+                    .column-content-list__credits
+                      .column-content-list__credit в кредит<br />от 13 000 ₽/мес
+                      .column-content-list__owner Собственник
+                  .column-content-list__owner-name Автосалон МЕРКУРИЙ
+                .column-content-list__operational
+                  a.column-content-list__save(data-content-list-save href="#")
+                  a.column-content-list__note(data-content-list-note href="#")
+                  a.column-content-list__reject(data-content-list-reject href="#")
+              .column-content-list__misc
+                .column-content-list__miscwrap
+                  .column-content-list__location г.Оренбург
+                  .column-content-list__misc-date 10 апреля
+                .column-content-list__misc-phone Телефон смотреть
+            .column-content-list__personal-note(personal-note)
+              input(placeholder="Заметку об этом автомобиле увидите только Вы")
+              a(href="#") 
+                img(src="assets/img/personal-note.png", alt="check")
+          li.column-content-list__block 
+            .column-content-list__imgwrap 
+              img(src="assets/img/autos/6.jpg", alt="auto")
+            .column-content-list__content 
+              .column-content-list__info
+                h3 Toyota RAV4 IV (CA40)
+                .column-content-list__primary-stats
+                  .column-content-list__year 2013
+                  .column-content-list__mileage 135 000 км
+                .column-content-list__stats
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell 2.0 л / 146 л.с.
+                    .column-content-list__stats-cell Внедорожник 5 дв.
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell Бензин
+                    .column-content-list__stats-cell Полный привод
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell Механика
+                    .column-content-list__stats-cell 1 владелец               
+              .column-content-list__handling
+                .column-content-list__prices
+                  .column-content-list__price
+                    h3.good-price 1 450 000 ₽
+                    .column-content-list__credits
+                      .column-content-list__credit в кредит<br />от 22 350 ₽/мес
+                  .column-content-list__owner-name-starred Автосалон на Новотроицком шоссе                     
+                .column-content-list__operational
+                  a.column-content-list__save(data-content-list-save href="#")
+                  a.column-content-list__note(data-content-list-note href="#")
+                  a.column-content-list__reject(data-content-list-reject href="#")
+              .column-content-list__misc
+                .column-content-list__miscwrap
+                  .column-content-list__location г.Оренбург
+                  .column-content-list__misc-date 10 апреля
+                .column-content-list__misc-phone Телефон смотреть
+            .column-content-list__personal-note(personal-note)
+              input(placeholder="Заметку об этом автомобиле увидите только Вы")
+              a(href="#") 
+                img(src="assets/img/personal-note.png", alt="check")
+    .column-sidbar
+      p sidebar
+
+  .column-content-slider  
     .container
-      +item('item title', 'item descr')
-      +item('item title', 'item descr')
-      +item('item title', 'item descr')
-  example-component
+      .column-content-slider__head
+        h2 Уникальные предложения
+        .column-content-slider__location 
+          .column-content-slider__city г. Оренбург
+          .column-content-slider__maplink Показать на карте
+    ul.column-content-slider__list(main-slider)
+      li.active
+        .column-content-slider__imgwrap
+          img(src="assets/img/main-slider/Kia_Rio_IV.jpg", alt="auto")
+          .column-content-slider__badge(main-slider-favorite)
+          .column-content-slider__excellent-price Отличная цена
+        .column-content-slider__textwrap 
+          .column-content-slider__model Kia Rio IV
+          .column-content-slider__row 
+            .column-content-slider__price 485 000 ₽
+            .column-content-slider__year 2017 г.
+      li 
+        .column-content-slider__imgwrap
+          img(src="assets/img/main-slider/Kia_Sportage_III.jpg", alt="auto")
+          .column-content-slider__badge(main-slider-favorite)
+          .column-content-slider__good-price Хорошая цена
+        .column-content-slider__textwrap 
+          .column-content-slider__model Kia Sportage III
+          .column-content-slider__row 
+            .column-content-slider__price 925 000 ₽
+            .column-content-slider__year 2015 г.
+      li 
+        .column-content-slider__imgwrap
+          img(src="assets/img/main-slider/Renault_Kaptur.jpg", alt="auto")
+          .column-content-slider__badge(main-slider-favorite)
+          .column-content-slider__excellent-price Отличная цена
+        .column-content-slider__textwrap 
+          .column-content-slider__model Renault Kaptur
+          .column-content-slider__row 
+            .column-content-slider__price 875 000 ₽
+            .column-content-slider__year 2016 г.          
+      li 
+        .column-content-slider__imgwrap
+          img(src="assets/img/main-slider/Lada.jpg", alt="auto")
+          .column-content-slider__badge(main-slider-favorite)
+          .column-content-slider__excellent-price Отличная цена
+        .column-content-slider__textwrap 
+          .column-content-slider__model Лада Х-рей
+          .column-content-slider__row 
+            .column-content-slider__price 610 000 ₽
+            .column-content-slider__year 2019 г.          
+      li 
+        .column-content-slider__imgwrap
+          img(src="assets/img/main-slider/Ford_Focus_III.jpg", alt="auto")
+          .column-content-slider__badge(main-slider-favorite)
+          .column-content-slider__good-price Хорошая цена
+        .column-content-slider__textwrap 
+          .column-content-slider__model Ford Focus III
+          .column-content-slider__row 
+            .column-content-slider__price 485 000 ₽
+            .column-content-slider__year 2012 г.          
+      li 
+        .column-content-slider__imgwrap
+          img(src="assets/img/main-slider/Lifan_X60.jpg", alt="auto")
+          .column-content-slider__badge(main-slider-favorite)
+          .column-content-slider__excellent-price Отличная цена
+        .column-content-slider__textwrap 
+          .column-content-slider__model Lifan X60
+          .column-content-slider__row 
+            .column-content-slider__price 505 000 ₽
+            .column-content-slider__year 2016 г.          
+      li 
+        .column-content-slider__imgwrap
+          img(src="assets/img/main-slider/Volkswagen_Scirocco_III.jpg", alt="auto")
+          .column-content-slider__badge(main-slider-favorite)
+          .column-content-slider__good-price Хорошая цена
+        .column-content-slider__textwrap 
+          .column-content-slider__model Volkswagen Scirocco III
+          .column-content-slider__row 
+            .column-content-slider__price 700 000 ₽
+            .column-content-slider__year 2012 г.          
+      li
+        .column-content-slider__imgwrap
+          img(src="assets/img/main-slider/Kia_Rio_IV.jpg", alt="auto")
+          .column-content-slider__badge(main-slider-favorite)
+          .column-content-slider__excellent-price Отличная цена
+        .column-content-slider__textwrap 
+          .column-content-slider__model Kia Rio IV
+          .column-content-slider__row 
+            .column-content-slider__price 485 000 ₽
+            .column-content-slider__year 2017 г.
+      li 
+        .column-content-slider__imgwrap
+          img(src="assets/img/main-slider/Kia_Sportage_III.jpg", alt="auto")
+          .column-content-slider__badge(main-slider-favorite)
+          .column-content-slider__good-price Хорошая цена
+        .column-content-slider__textwrap 
+          .column-content-slider__model Kia Sportage III
+          .column-content-slider__row 
+            .column-content-slider__price 925 000 ₽
+            .column-content-slider__year 2015 г.
+      li 
+        .column-content-slider__imgwrap
+          img(src="assets/img/main-slider/Renault_Kaptur.jpg", alt="auto")
+          .column-content-slider__badge(main-slider-favorite)
+          .column-content-slider__excellent-price Отличная цена
+        .column-content-slider__textwrap 
+          .column-content-slider__model Renault Kaptur
+          .column-content-slider__row 
+            .column-content-slider__price 875 000 ₽
+            .column-content-slider__year 2016 г.          
+      li 
+        .column-content-slider__imgwrap
+          img(src="assets/img/main-slider/Lada.jpg", alt="auto")
+          .column-content-slider__badge(main-slider-favorite)
+          .column-content-slider__excellent-price Отличная цена
+        .column-content-slider__textwrap 
+          .column-content-slider__model Лада Х-рей
+          .column-content-slider__row 
+            .column-content-slider__price 610 000 ₽
+            .column-content-slider__year 2019 г.          
+      li 
+        .column-content-slider__imgwrap
+          img(src="assets/img/main-slider/Ford_Focus_III.jpg", alt="auto")
+          .column-content-slider__badge(main-slider-favorite)
+          .column-content-slider__good-price Хорошая цена
+        .column-content-slider__textwrap 
+          .column-content-slider__model Ford Focus III
+          .column-content-slider__row 
+            .column-content-slider__price 485 000 ₽
+            .column-content-slider__year 2012 г.          
+      li 
+        .column-content-slider__imgwrap
+          img(src="assets/img/main-slider/Lifan_X60.jpg", alt="auto")
+          .column-content-slider__badge(main-slider-favorite)
+          .column-content-slider__excellent-price Отличная цена
+        .column-content-slider__textwrap 
+          .column-content-slider__model Lifan X60
+          .column-content-slider__row 
+            .column-content-slider__price 505 000 ₽
+            .column-content-slider__year 2016 г.          
+      li 
+        .column-content-slider__imgwrap
+          img(src="assets/img/main-slider/Volkswagen_Scirocco_III.jpg", alt="auto")
+          .column-content-slider__badge(main-slider-favorite)
+          .column-content-slider__good-price Хорошая цена
+        .column-content-slider__textwrap 
+          .column-content-slider__model Volkswagen Scirocco III
+          .column-content-slider__row 
+            .column-content-slider__price 700 000 ₽
+            .column-content-slider__year 2012 г. 
 
-
-block script
-  script(type='text/javascript').
-    const foo = true;
-    let bar = function() {};
-    if (foo) {
-    bar(1 + 5)
-    }
+  .container
+    .column-content
+      .column-content-list
+        .column-content-list__list
+          li.column-content-list__block 
+            .column-content-list__imgwrap 
+              img(src="assets/img/autos/7.jpg", alt="auto")
+              .column-content-list__subimages
+                .column-content-list__subimgrap
+                  img(src="assets/img/autos/7a.jpg", alt="auto")
+                .column-content-list__subimgrap
+                  img(src="assets/img/autos/7b.jpg", alt="auto")
+            .column-content-list__content 
+              .column-content-list__info
+                h3 Mercedes-Benz GLE II (V167)
+                .column-content-list__primary-stats
+                  .column-content-list__year 2021
+                  .column-content-list__mileage.zero-mileage НОВЫЙ
+                .column-content-list__stats
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell 2.0 л / 245 л.с.
+                    .column-content-list__stats-cell Внедорожник 5 дв.
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell Дизель
+                    .column-content-list__stats-cell Полный привод
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell Автомат
+                    .column-content-list__stats-cell 0 владельцев               
+              .column-content-list__handling
+                .column-content-list__prices
+                  .column-content-list__price
+                    h3 5 660 875 ₽
+                    .column-content-list__credits
+                      .column-content-list__credit в кредит<br />от 25 000 ₽/мес
+                      .column-content-list__good-price Хорошая цена                
+                      .column-content-list__trade-in-price Trade in авто               
+                .column-content-list__operational
+                  a.column-content-list__save.active(data-content-list-save href="#")
+                  a.column-content-list__note.active(data-content-list-note href="#")
+                  a.column-content-list__reject(data-content-list-reject href="#")
+              .column-content-list__misc.select
+                .column-content-list__miscwrap
+                  .column-content-list__salon Каскад-Авто Mercedes-Benz Оренбур
+                  .column-content-list__brand 
+                    img(src="assets/img/Mercedes-Benz.png", alt="auto")
+                    .column-content-list__brandname Mercedes-Benz 
+                .column-content-list__misc-phone Телефон смотреть
+            .column-content-list__personal-note.show(personal-note)
+              input(placeholder="Заметку об этом автомобиле увидите только Вы")
+              a(href="#") 
+                img(src="assets/img/personal-note.png", alt="check")
+          li.column-content-list__block 
+            .column-content-list__imgwrap 
+              img(src="assets/img/autos/8.jpg", alt="auto")
+              a.column-content-list__up(href="#") 
+            .column-content-list__content 
+              .column-content-list__info
+                h3 Nissan Terrano III (D10)
+                .column-content-list__primary-stats
+                  .column-content-list__year 2017
+                  .column-content-list__mileage 24 630 км
+                .column-content-list__stats
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell 2.0 л / 143 л.с.
+                    .column-content-list__stats-cell Внедорожник 5 дв.
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell Бензин
+                    .column-content-list__stats-cell Полный привод
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell Механика
+                    .column-content-list__stats-cell 1 владелец             
+              .column-content-list__handling
+                .column-content-list__prices
+                  .column-content-list__price
+                    h3 1 070 000 ₽
+                    .column-content-list__credits
+                      .column-content-list__credit в кредит<br />от 16 500 ₽/мес             
+                .column-content-list__operational
+                  a.column-content-list__save(data-content-list-save href="#")
+                  a.column-content-list__note(data-content-list-note href="#")
+                  a.column-content-list__reject(data-content-list-reject href="#")
+              .column-content-list__misc
+                .column-content-list__miscwrap
+                  .column-content-list__location г.Оренбург
+                  .column-content-list__misc-date 10 апреля
+                .column-content-list__misc-phone Телефон смотреть
+            .column-content-list__personal-note(personal-note)
+              input(placeholder="Заметку об этом автомобиле увидите только Вы")
+              a(href="#") 
+                img(src="assets/img/personal-note.png", alt="check")
+          li.column-content-list__block 
+            .column-content-list__imgwrap 
+              img(src="assets/img/autos/9.jpg", alt="auto")
+              a.column-content-list__up(href="#") 
+            .column-content-list__content 
+              .column-content-list__info
+                h3 Mazda CX-5 II
+                .column-content-list__primary-stats
+                  .column-content-list__year 2019
+                  .column-content-list__mileage 15 565 км
+                .column-content-list__stats
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell 2.5 л / 194 л.с.
+                    .column-content-list__stats-cell Внедорожник 5 дв.
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell Бензин
+                    .column-content-list__stats-cell Полный привод
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell Автомат
+                    .column-content-list__stats-cell 1 владелец             
+              .column-content-list__handling
+                .column-content-list__prices
+                  .column-content-list__price
+                    h3 2 700 000 ₽
+                    .column-content-list__credits
+                      .column-content-list__credit в кредит<br />от 40 000 ₽/мес             
+                .column-content-list__operational
+                  a.column-content-list__save.active(data-content-list-save href="#")
+                  a.column-content-list__note(data-content-list-note href="#")
+                  a.column-content-list__reject(data-content-list-reject href="#")
+              .column-content-list__misc
+                .column-content-list__miscwrap
+                  .column-content-list__location г.Оренбург
+                  .column-content-list__misc-date 10 апреля
+                .column-content-list__misc-phone Телефон смотреть
+            .column-content-list__personal-note(personal-note)
+              input(placeholder="Заметку об этом автомобиле увидите только Вы")
+              a(href="#") 
+                img(src="assets/img/personal-note.png", alt="check")
+          li.column-content-list__block 
+            .column-content-list__imgwrap 
+              img(src="assets/img/autos/9_5.jpg", alt="auto")
+              .column-content-list__subimages
+                .column-content-list__subimgrap
+                  img(src="assets/img/autos/9_5a.jpg", alt="auto")
+                .column-content-list__subimgrap
+                  img(src="assets/img/autos/9_5b.jpg", alt="auto")
+            .column-content-list__content 
+              .column-content-list__info
+                h3 BMW X3 II (F25) Рестайлинг 20i
+                .column-content-list__primary-stats
+                  .column-content-list__year 2017
+                  .column-content-list__mileage 38 621 км
+                .column-content-list__stats
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell 2.0 л / 184 л.с.
+                    .column-content-list__stats-cell Внедорожник 5 дв.
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell Бензин
+                    .column-content-list__stats-cell Полный привод
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell Автомат
+                    .column-content-list__stats-cell 1  владельцев            
+              .column-content-list__handling
+                .column-content-list__prices
+                  .column-content-list__price
+                    h3 2 450 000 ₽
+                    .column-content-list__credits
+                      .column-content-list__credit в кредит<br />от 35 000 ₽/мес            
+                .column-content-list__operational
+                  a.column-content-list__save(data-content-list-save href="#")
+                  a.column-content-list__note(data-content-list-note href="#")
+                  a.column-content-list__reject(data-content-list-reject href="#")
+              .column-content-list__misc.select
+                .column-content-list__miscwrap
+                  .column-content-list__brand 
+                    img(src="assets/img/BMW.png", alt="auto")
+                    .column-content-list__brandname BMW
+                .column-content-list__misc-phone Телефон смотреть
+            .column-content-list__personal-note(personal-note)
+              input(placeholder="Заметку об этом автомобиле увидите только Вы")
+              a(href="#") 
+                img(src="assets/img/personal-note.png", alt="check")
+          li.column-content-list__block 
+            .column-content-list__imgwrap 
+              img(src="assets/img/autos/10.jpg", alt="auto")
+            .column-content-list__content 
+              .column-content-list__info
+                h3.seek Hyundai Solaris II
+                .column-content-list__primary-stats
+                  .column-content-list__year 2018
+                  .column-content-list__mileage 72 000 км
+                .column-content-list__stats
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell 1.4 л / 100 л.с.
+                    .column-content-list__stats-cell Седан
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell Бензин
+                    .column-content-list__stats-cell Передний привод
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell Механика
+                    .column-content-list__stats-cell 3 влад ельца            
+              .column-content-list__handling
+                .column-content-list__prices
+                  .column-content-list__price
+                    h3.good-price 625 000 ₽
+                    .column-content-list__credits
+                      .column-content-list__credit в кредит<br />от 12 500 ₽/мес
+                      .column-content-list__good-price Хорошая цена
+                      .column-content-list__owner Собственник
+                .column-content-list__operational
+                  a.column-content-list__save(data-content-list-save href="#")
+                  a.column-content-list__note(data-content-list-note href="#")
+                  a.column-content-list__reject(data-content-list-reject href="#")
+              .column-content-list__misc
+                .column-content-list__miscwrap
+                  .column-content-list__location г.Оренбург
+                  .column-content-list__misc-date 10 апреля
+                .column-content-list__misc-phone Телефон смотреть
+            .column-content-list__personal-note(personal-note)
+              input(placeholder="Заметку об этом автомобиле увидите только Вы")
+              a(href="#") 
+                img(src="assets/img/personal-note.png", alt="check")
+          li.column-content-list__block 
+            .column-content-list__imgwrap 
+              img(src="assets/img/autos/11.jpg", alt="auto")
+            .column-content-list__content 
+              .column-content-list__info
+                h3.seek Renault Duster I
+                .column-content-list__primary-stats
+                  .column-content-list__year 2012
+                  .column-content-list__mileage 115 000 км
+                .column-content-list__stats
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell 1.6 л / 102 л.с.
+                    .column-content-list__stats-cell Внедорожник 5 дв.
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell Бензин
+                    .column-content-list__stats-cell Полный привод
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell Механика
+                    .column-content-list__stats-cell 2 владельца            
+              .column-content-list__handling
+                .column-content-list__prices
+                  .column-content-list__price
+                    h3 750 000 ₽
+                    .column-content-list__credits
+                      .column-content-list__credit в кредит<br />от 14 000 ₽/мес
+                      .column-content-list__owner Собственник
+                .column-content-list__operational
+                  a.column-content-list__save(data-content-list-save href="#")
+                  a.column-content-list__note(data-content-list-note href="#")
+                  a.column-content-list__reject(data-content-list-reject href="#")
+              .column-content-list__misc
+                .column-content-list__miscwrap
+                  .column-content-list__location г.Оренбург
+                  .column-content-list__misc-date 10 апреля
+                .column-content-list__misc-phone Телефон смотреть
+            .column-content-list__personal-note(personal-note)
+              input(placeholder="Заметку об этом автомобиле увидите только Вы")
+              a(href="#") 
+                img(src="assets/img/personal-note.png", alt="check")
+          li.column-content-list__block 
+            .column-content-list__imgwrap 
+              img(src="assets/img/autos/12.jpg", alt="auto")
+            .column-content-list__content 
+              .column-content-list__info
+                h3 BMW 1 серии II (F20/F21) 116i
+                .column-content-list__primary-stats
+                  .column-content-list__year 2013
+                  .column-content-list__mileage 190 000 км
+                .column-content-list__stats
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell 1.6 л / 136 л.с.
+                    .column-content-list__stats-cell Хэтчбек 5 дв.
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell Бензин
+                    .column-content-list__stats-cell Задний привод
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell Автомат
+                    .column-content-list__stats-cell 2 владельца            
+              .column-content-list__handling
+                .column-content-list__prices
+                  .column-content-list__price
+                    h3 650 000 ₽
+                    .column-content-list__credits
+                      .column-content-list__credit в кредит<br />от 11 000 ₽/мес
+                      .column-content-list__good-price Хорошая цена
+                .column-content-list__operational
+                  a.column-content-list__save(data-content-list-save href="#")
+                  a.column-content-list__note(data-content-list-note href="#")
+                  a.column-content-list__reject(data-content-list-reject href="#")
+              .column-content-list__misc
+                .column-content-list__miscwrap
+                  .column-content-list__location г.Оренбург
+                  .column-content-list__misc-date 10 апреля
+                .column-content-list__misc-phone Телефон смотреть
+            .column-content-list__personal-note(personal-note)
+              input(placeholder="Заметку об этом автомобиле увидите только Вы")
+              a(href="#") 
+                img(src="assets/img/personal-note.png", alt="check")
+          li.column-content-list__block 
+            .column-content-list__imgwrap 
+              img(src="assets/img/autos/13.jpg", alt="auto")
+            .column-content-list__content 
+              .column-content-list__info
+                h3 Volkswagen Polo V
+                .column-content-list__primary-stats
+                  .column-content-list__year 2011
+                  .column-content-list__mileage 185 000 км
+                .column-content-list__stats
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell 1.6 л / 105 л.с.
+                    .column-content-list__stats-cell Седан
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell Бензин
+                    .column-content-list__stats-cell Передний привод
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell Механика
+                    .column-content-list__stats-cell Более 3 владельцев          
+              .column-content-list__handling
+                .column-content-list__prices
+                  .column-content-list__price
+                    h3 265 000 ₽
+                    .column-content-list__credits
+                      .column-content-list__credit в кредит<br />от 4 300 ₽/мес
+                      .column-content-list__excellent-price Отличная цена
+                      .column-content-list__owner Собственник
+                .column-content-list__operational
+                  a.column-content-list__save(data-content-list-save href="#")
+                  a.column-content-list__note(data-content-list-note href="#")
+                  a.column-content-list__reject(data-content-list-reject href="#")
+              .column-content-list__misc
+                .column-content-list__miscwrap
+                  .column-content-list__location г.Оренбург
+                  .column-content-list__misc-date 10 апреля
+                .column-content-list__misc-phone Телефон смотреть
+            .column-content-list__personal-note(personal-note)
+              input(placeholder="Заметку об этом автомобиле увидите только Вы")
+              a(href="#") 
+                img(src="assets/img/personal-note.png", alt="check")
+          li.column-content-list__block 
+            .column-content-list__imgwrap 
+              img(src="assets/img/autos/14.jpg", alt="auto")
+            .column-content-list__content 
+              .column-content-list__info
+                h3 LADA (ВАЗ) Kalina II
+                .column-content-list__primary-stats
+                  .column-content-list__year 2014
+                  .column-content-list__mileage 136 700 км
+                .column-content-list__stats
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell 1.6 л / 87 л.с.
+                    .column-content-list__stats-cell Универсал 5 дв.
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell Бензин
+                    .column-content-list__stats-cell Передний привод
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell Механика
+                    .column-content-list__stats-cell 2 владельца      
+              .column-content-list__handling
+                .column-content-list__prices
+                  .column-content-list__price
+                    h3 323 00 ₽
+                    .column-content-list__credits
+                      .column-content-list__credit в кредит<br />от 5 300 ₽/мес
+                .column-content-list__operational
+                  a.column-content-list__save(data-content-list-save href="#")
+                  a.column-content-list__note(data-content-list-note href="#")
+                  a.column-content-list__reject(data-content-list-reject href="#")
+              .column-content-list__misc
+                .column-content-list__miscwrap
+                  .column-content-list__location г.Оренбург
+                  .column-content-list__misc-date 10 апреля
+                .column-content-list__misc-phone Телефон смотреть
+            .column-content-list__personal-note(personal-note)
+              input(placeholder="Заметку об этом автомобиле увидите только Вы")
+              a(href="#") 
+                img(src="assets/img/personal-note.png", alt="check")
+          li.column-content-list__block 
+            .column-content-list__imgwrap 
+              img(src="assets/img/autos/15.jpg", alt="auto")
+            .column-content-list__content 
+              .column-content-list__info
+                h3 LADA (ВАЗ) 2121 (4x4) I Рестайлинг
+                .column-content-list__primary-stats
+                  .column-content-list__year 2016
+                  .column-content-list__mileage 87 000 км
+                .column-content-list__stats
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell 1.7 л / 83 л.с.
+                    .column-content-list__stats-cell Внедорожник 3 дв.
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell Бензин
+                    .column-content-list__stats-cell Полный привод
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell Механика
+                    .column-content-list__stats-cell 2 владельца             
+              .column-content-list__handling
+                .column-content-list__prices
+                  .column-content-list__price
+                    h3.good-price 403 000 ₽
+                    .column-content-list__credits
+                      .column-content-list__credit в кредит<br />от 6 350 ₽/мес
+                  .column-content-list__owner-name-starred Автосалон на Новотроицком шоссе                     
+                .column-content-list__operational
+                  a.column-content-list__save(data-content-list-save href="#")
+                  a.column-content-list__note(data-content-list-note href="#")
+                  a.column-content-list__reject(data-content-list-reject href="#")
+              .column-content-list__misc
+                .column-content-list__miscwrap
+                  .column-content-list__location г.Оренбург
+                  .column-content-list__misc-date 10 апреля
+                .column-content-list__misc-phone Телефон смотреть
+            .column-content-list__personal-note(personal-note)
+              input(placeholder="Заметку об этом автомобиле увидите только Вы")
+              a(href="#") 
+                img(src="assets/img/personal-note.png", alt="check")
+          li.column-content-list__block 
+            .column-content-list__imgwrap 
+              img(src="assets/img/autos/16.jpg", alt="auto")
+              .column-content-list__subimages
+                .column-content-list__subimgrap
+                  img(src="assets/img/autos/16a.jpg", alt="auto")
+                .column-content-list__subimgrap
+                  img(src="assets/img/autos/16b.jpg", alt="auto")
+            .column-content-list__content 
+              .column-content-list__info
+                h3 Mercedes-Benz E-Класс V
+                .column-content-list__primary-stats
+                  .column-content-list__year 2021
+                  .column-content-list__mileage.zero-mileage НОВЫЙ
+                .column-content-list__stats
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell 2.0 л / 197 л.с.
+                    .column-content-list__stats-cell Купе
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell Бензин
+                    .column-content-list__stats-cell Полный привод
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell Автомат
+                    .column-content-list__stats-cell 0 владельцев               
+              .column-content-list__handling
+                .column-content-list__prices
+                  .column-content-list__price
+                    h3 3 860 875 ₽
+                    .column-content-list__credits
+                      .column-content-list__credit в кредит<br />от 25 000 ₽/мес
+                      .column-content-list__good-price Хорошая цена                
+                      .column-content-list__trade-in-price Trade in авто               
+                .column-content-list__operational
+                  a.column-content-list__save.active(data-content-list-save href="#")
+                  a.column-content-list__note.active(data-content-list-note href="#")
+                  a.column-content-list__reject(data-content-list-reject href="#")
+              .column-content-list__misc.select
+                .column-content-list__miscwrap
+                  .column-content-list__salon Каскад-Авто Mercedes-Benz Оренбур
+                  .column-content-list__brand 
+                    img(src="assets/img/Mercedes-Benz.png", alt="auto")
+                    .column-content-list__brandname Mercedes-Benz 
+                .column-content-list__misc-phone Телефон смотреть
+            .column-content-list__personal-note.show(personal-note)
+              input(placeholder="Заметку об этом автомобиле увидите только Вы")
+              a(href="#") 
+                img(src="assets/img/personal-note.png", alt="check")
+          li.column-content-list__block 
+            .column-content-list__imgwrap 
+              img(src="assets/img/autos/17.jpg", alt="auto")
+              a.column-content-list__up(href="#") 
+            .column-content-list__content 
+              .column-content-list__info
+                h3 Ford Focus III
+                .column-content-list__primary-stats
+                  .column-content-list__year 2011
+                  .column-content-list__mileage 186 000 км
+                .column-content-list__stats
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell 1.6 л / 105 л.с.
+                    .column-content-list__stats-cell Хэтчбек 5 дв.
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell Бензин
+                    .column-content-list__stats-cell Передний привод
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell Механика
+                    .column-content-list__stats-cell 3 владельца          
+              .column-content-list__handling
+                .column-content-list__prices
+                  .column-content-list__price
+                    h3 470 000 ₽
+                    .column-content-list__credits
+                      .column-content-list__credit в кредит<br />от 7 700 ₽/мес             
+                .column-content-list__operational
+                  a.column-content-list__save(data-content-list-save href="#")
+                  a.column-content-list__note(data-content-list-note href="#")
+                  a.column-content-list__reject(data-content-list-reject href="#")
+              .column-content-list__misc
+                .column-content-list__miscwrap
+                  .column-content-list__location г.Оренбург
+                  .column-content-list__misc-date 9 апреля
+                .column-content-list__misc-phone Телефон смотреть
+            .column-content-list__personal-note(personal-note)
+              input(placeholder="Заметку об этом автомобиле увидите только Вы")
+              a(href="#") 
+                img(src="assets/img/personal-note.png", alt="check")
+          li.column-content-list__block 
+            .column-content-list__imgwrap 
+              img(src="assets/img/autos/18.jpg", alt="auto")
+              a.column-content-list__up(href="#") 
+            .column-content-list__content 
+              .column-content-list__info
+                h3 Skoda Yeti I Рестайлинг
+                .column-content-list__primary-stats
+                  .column-content-list__year 2014
+                  .column-content-list__mileage 100 000 км
+                .column-content-list__stats
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell 1.4 л / 122 л.с.
+                    .column-content-list__stats-cell Внедорожник 5 дв.
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell Бензин
+                    .column-content-list__stats-cell Передний привод
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell Робот
+                    .column-content-list__stats-cell 2 владельца        
+              .column-content-list__handling
+                .column-content-list__prices
+                  .column-content-list__price
+                    h3 800 000 ₽
+                    .column-content-list__credits
+                      .column-content-list__credit в кредит<br />от 13 000 ₽/мес             
+                .column-content-list__operational
+                  a.column-content-list__save.active(data-content-list-save href="#")
+                  a.column-content-list__note(data-content-list-note href="#")
+                  a.column-content-list__reject(data-content-list-reject href="#")
+              .column-content-list__misc
+                .column-content-list__miscwrap
+                  .column-content-list__location г.Оренбург
+                  .column-content-list__misc-date 9 апреля
+                .column-content-list__misc-phone Телефон смотреть
+            .column-content-list__personal-note(personal-note)
+              input(placeholder="Заметку об этом автомобиле увидите только Вы")
+              a(href="#") 
+                img(src="assets/img/personal-note.png", alt="check")
+          li.column-content-list__block 
+            .column-content-list__imgwrap 
+              img(src="assets/img/autos/19.jpg", alt="auto")
+              .column-content-list__subimages
+                .column-content-list__subimgrap
+                  img(src="assets/img/autos/19a.jpg", alt="auto")
+                .column-content-list__subimgrap
+                  img(src="assets/img/autos/19b.jpg", alt="auto")
+            .column-content-list__content 
+              .column-content-list__info
+                h3 Skoda Octavia III (A7)
+                .column-content-list__primary-stats
+                  .column-content-list__year 2018
+                  .column-content-list__mileage 92 000 км
+                .column-content-list__stats
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell 1.8 л / 180 л.с.
+                    .column-content-list__stats-cell Лифтбек 5 дв.
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell Бензин
+                    .column-content-list__stats-cell Полный привод
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell Робот
+                    .column-content-list__stats-cell 1  владельцев             
+              .column-content-list__handling
+                .column-content-list__prices
+                  .column-content-list__price
+                    h3 1 780 000 ₽
+                    .column-content-list__credits
+                      .column-content-list__credit в кредит<br />от 26 900 ₽/мес               
+                .column-content-list__operational
+                  a.column-content-list__save(data-content-list-save href="#")
+                  a.column-content-list__note(data-content-list-note href="#")
+                  a.column-content-list__reject(data-content-list-reject href="#")
+              .column-content-list__misc
+                .column-content-list__miscwrap
+                  .column-content-list__location г.Оренбург
+                  .column-content-list__misc-date 9 апреля                  
+              .column-content-list__misc.select
+                .column-content-list__miscwrap
+                  .column-content-list__brand 
+                    img(src="assets/img/Skoda.png", alt="auto")
+                    .column-content-list__brandname Skoda 
+                .column-content-list__misc-phone Телефон смотреть
+            .column-content-list__personal-note(personal-note)
+              input(placeholder="Заметку об этом автомобиле увидите только Вы")
+              a(href="#") 
+                img(src="assets/img/personal-note.png", alt="check")  
+          li.column-content-list__block 
+            .column-content-list__imgwrap 
+              img(src="assets/img/autos/20.jpg", alt="auto")
+            .column-content-list__content 
+              .column-content-list__info
+                h3 Hyundai Solaris 
+                .column-content-list__primary-stats
+                  .column-content-list__year 2016
+                  .column-content-list__mileage 38 000 км
+                .column-content-list__stats
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell 1.6 л / 123 л.с.
+                    .column-content-list__stats-cell Седан
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell Бензин
+                    .column-content-list__stats-cell Передний привод
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell Механика
+                    .column-content-list__stats-cell 1 владелец             
+              .column-content-list__handling
+                .column-content-list__prices
+                  .column-content-list__price
+                    h3.good-price 700 000 ₽
+                    .column-content-list__credits
+                      .column-content-list__credit в кредит<br />от 10 800 ₽/мес   
+                      .column-content-list__good-price Хорошая цена                
+                      .column-content-list__owner Собственник                                 
+                .column-content-list__operational
+                  a.column-content-list__save(data-content-list-save href="#")
+                  a.column-content-list__note(data-content-list-note href="#")
+                  a.column-content-list__reject(data-content-list-reject href="#")
+              .column-content-list__misc
+                .column-content-list__miscwrap
+                  .column-content-list__location г.Оренбург
+                  .column-content-list__misc-date 9 апреля
+                .column-content-list__misc-phone Телефон смотреть
+            .column-content-list__personal-note(personal-note)
+              input(placeholder="Заметку об этом автомобиле увидите только Вы")
+              a(href="#") 
+                img(src="assets/img/personal-note.png", alt="check")
+          li.column-content-list__block 
+            .column-content-list__imgwrap 
+              img(src="assets/img/autos/21.jpg", alt="auto") 
+            .column-content-list__content 
+              .column-content-list__info
+                h3 Toyota Camry VII (XV50)
+                .column-content-list__primary-stats
+                  .column-content-list__year 2013
+                  .column-content-list__mileage 106 055 км
+                .column-content-list__stats
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell 2.5 л / 181 л.с.
+                    .column-content-list__stats-cell Седан
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell Бензин
+                    .column-content-list__stats-cell Передний привод
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell Автомат
+                    .column-content-list__stats-cell 1 владелец             
+              .column-content-list__handling
+                .column-content-list__prices
+                  .column-content-list__price
+                    h3 3 700 000 ₽
+                    .column-content-list__credits
+                      .column-content-list__credit в кредит<br />от 5 000 ₽/мес                  
+                      .column-content-list__owner Собственник                                 
+                .column-content-list__operational
+                  a.column-content-list__save(data-content-list-save href="#")
+                  a.column-content-list__note(data-content-list-note href="#")
+                  a.column-content-list__reject(data-content-list-reject href="#")
+              .column-content-list__misc
+                .column-content-list__miscwrap
+                  .column-content-list__location г.Оренбург
+                  .column-content-list__misc-date 9 апреля
+                .column-content-list__misc-phone Телефон смотреть
+            .column-content-list__personal-note(personal-note)
+              input(placeholder="Заметку об этом автомобиле увидите только Вы")
+              a(href="#") 
+                img(src="assets/img/personal-note.png", alt="check")
+          li.column-content-list__block 
+            .column-content-list__imgwrap 
+              img(src="assets/img/autos/22.jpg", alt="auto")
+            .column-content-list__content 
+              .column-content-list__info
+                h3 Kia Picanto III
+                .column-content-list__primary-stats
+                  .column-content-list__year 2019
+                  .column-content-list__mileage 50 000 км
+                .column-content-list__stats
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell 1.3 л / 84 л.с.
+                    .column-content-list__stats-cell Хэтчбек 5 дв.
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell Бензин
+                    .column-content-list__stats-cell Передний привод
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell Автомат
+                    .column-content-list__stats-cell 1 владелец             
+              .column-content-list__handling
+                .column-content-list__prices
+                  .column-content-list__price
+                    h3 875 000 ₽
+                    .column-content-list__credits
+                      .column-content-list__credit в кредит<br />от 12 500 ₽/мес   
+                      .column-content-list__good-price Хорошая цена                                               
+                .column-content-list__operational
+                  a.column-content-list__save(data-content-list-save href="#")
+                  a.column-content-list__note(data-content-list-note href="#")
+                  a.column-content-list__reject(data-content-list-reject href="#")
+              .column-content-list__misc
+                .column-content-list__miscwrap
+                  .column-content-list__location г.Оренбург
+                  .column-content-list__misc-date 9 апреля
+                .column-content-list__misc-phone Телефон смотреть
+            .column-content-list__personal-note(personal-note)
+              input(placeholder="Заметку об этом автомобиле увидите только Вы")
+              a(href="#") 
+                img(src="assets/img/personal-note.png", alt="check") 
+          li.column-content-list__block 
+            .column-content-list__imgwrap 
+              img(src="assets/img/autos/23.jpg", alt="auto")
+            .column-content-list__content 
+              .column-content-list__info
+                h3 Skoda Fabia II 
+                .column-content-list__primary-stats
+                  .column-content-list__year 2011
+                  .column-content-list__mileage 132 100 км
+                .column-content-list__stats
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell 1.2 л / 70 л.с.
+                    .column-content-list__stats-cell Хэтчбек 5 дв.
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell Бензин
+                    .column-content-list__stats-cell Передний привод
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell Механика
+                    .column-content-list__stats-cell 2 владельца           
+              .column-content-list__handling
+                .column-content-list__prices
+                  .column-content-list__price
+                    h3 323 000 ₽
+                    .column-content-list__credits
+                      .column-content-list__credit в кредит<br />от 5 150 ₽/мес   
+                      .column-content-list__excellent-price Отличная цена                                               
+                      .column-content-list__auction Торг уместен                                           
+                      .column-content-list__owner Собственник                                             
+                .column-content-list__operational
+                  a.column-content-list__save(data-content-list-save href="#")
+                  a.column-content-list__note(data-content-list-note href="#")
+                  a.column-content-list__reject(data-content-list-reject href="#")
+              .column-content-list__misc
+                .column-content-list__miscwrap
+                  .column-content-list__location г.Оренбург
+                  .column-content-list__misc-date 9 апреля
+                .column-content-list__misc-phone Телефон смотреть
+            .column-content-list__personal-note(personal-note)
+              input(placeholder="Заметку об этом автомобиле увидите только Вы")
+              a(href="#") 
+                img(src="assets/img/personal-note.png", alt="check") 
+          li.column-content-list__block 
+            .column-content-list__imgwrap 
+              img(src="assets/img/autos/24.jpg", alt="auto")
+            .column-content-list__content 
+              .column-content-list__info
+                h3 BMW X5 III (F15) 25d
+                .column-content-list__primary-stats
+                  .column-content-list__year 2019
+                  .column-content-list__mileage 100 800 км
+                .column-content-list__stats
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell 3.0 л / 218 л.с.
+                    .column-content-list__stats-cell Внедорожник 5 дв.
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell Дизель
+                    .column-content-list__stats-cell Полный привод
+                  .column-content-list__stats-row 
+                    .column-content-list__stats-cell Автомат
+                    .column-content-list__stats-cell 1 владелец        
+              .column-content-list__handling
+                .column-content-list__prices
+                  .column-content-list__price
+                    h3 2 850 00 ₽ 
+                    .column-content-list__credits
+                      .column-content-list__credit в кредит<br />от 54 570 ₽/мес                                           
+                .column-content-list__operational
+                  a.column-content-list__save(data-content-list-save href="#")
+                  a.column-content-list__note(data-content-list-note href="#")
+                  a.column-content-list__reject(data-content-list-reject href="#")
+              .column-content-list__misc
+                .column-content-list__miscwrap
+                  .column-content-list__location г.Оренбург
+                  .column-content-list__misc-date 9 апреля
+                .column-content-list__misc-phone Телефон смотреть
+            .column-content-list__personal-note(personal-note)
+              input(placeholder="Заметку об этом автомобиле увидите только Вы")
+              a(href="#") 
+                img(src="assets/img/personal-note.png", alt="check") 
+    .column-sidbar
+      p sidebar
